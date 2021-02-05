@@ -159,14 +159,14 @@
             jsonDataObject.push(json_data);
             
             for (var j = 0; j < jsonDataObject.length; j++) {
-                for(var j in jsonDataObject){
-                    if(jsonDataObject[j].Priority == 'HP'){
+                for(var k in jsonDataObject){
+                    if(jsonDataObject[k].Priority == 'HP'){
                       var color =  'red';
                       }
-                    else if(jsonDataObject[j].Priority == 'MP'){
+                    else if(jsonDataObject[k].Priority == 'MP'){
                       var color =  'yellow';
                       }
-                    else if(jsonDataObject[j].Priority == 'LP'){
+                    else if(jsonDataObject[k].Priority == 'LP'){
                       var color =  'green';
                       }
                     
