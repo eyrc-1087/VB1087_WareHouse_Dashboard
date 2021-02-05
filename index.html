@@ -135,7 +135,6 @@
     }	
     function refreshMap(){
         var container = L.DomUtil.get('map');
-        var color="red";
       	if(container != null){
         container._leaflet_id = null;
         }
@@ -159,18 +158,18 @@
             jsonDataObject.push(json_data);
             
             for (var j = 0; j < jsonDataObject.length; j++) {
-                for(var k in jsonDataObject){
-                    if(jsonDataObject[k].Priority == 'HP'){
+                
+                    if(jsonDataObject[j].Priority == 'HP'){
                       var color =  'red';
                       }
-                    else if(jsonDataObject[k].Priority == 'MP'){
+                    else if(jsonDataObject[j].Priority == 'MP'){
                       var color =  'yellow';
                       }
-                    else if(jsonDataObject[k].Priority == 'LP'){
+                    else if(jsonDataObject[j].Priority == 'LP'){
                       var color =  'green';
                       }
                     
-                  } 
+                  
                 var leafIcon = helper.getIcon(
                         {icon: 'leaf',
                         markerColor: color});
