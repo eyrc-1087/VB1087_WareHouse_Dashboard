@@ -135,6 +135,7 @@
     }	
     function refreshMap(){
         var container = L.DomUtil.get('map');
+        var color ="";
       	if(container != null){
         container._leaflet_id = null;
         }
@@ -168,12 +169,9 @@
                     else if(jsonDataObject[j].Priority == 'LP'){
                       var color =  'green';
                       }
-                    
-                  
-                var leafIcon = helper.getIcon(
-                        {icon: 'leaf',
-                        markerColor: color});
-                
+                      var leafIcon = L.icon({icon: 'leaf', markerColor: 'red'}); 
+                      // var marker=L.marker(["43.527414", "-96.741249"], {icon: leafIcon}).addTo(map).bindPopup('The Location'); 
+                      
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)));
                 marker.bindPopup(jsonDataObject[j].City, {
                         autoClose: false
