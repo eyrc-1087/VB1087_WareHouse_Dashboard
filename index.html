@@ -135,14 +135,14 @@
     }	
     function refreshMap(){
         var container = L.DomUtil.get('map');
-
+        var color="";
       	if(container != null){
         container._leaflet_id = null;
         }
          
         var map = L.map('map').setView([20.5937, 78.9629], 4);
         var jsonDataObject =[];
-
+        
         $.getJSON('https://spreadsheets.google.com/feeds/list/1LExU5UKqWPFxxL_p4imps50Zac29Nv8aCVaXvd6nHAA/5/public/full?alt=json', function(data) {
         for (var i = 0; i < data.feed.entry.length; ++i) {
 
@@ -152,13 +152,30 @@
                 "Item" : data.feed.entry[i].gsx$item.$t,
                 "OrderDispatched" : data.feed.entry[i].gsx$orderdispatched.$t,
                 "OrderShipped" : data.feed.entry[i].gsx$ordershipped.$t,
+                "Priority" : data.feed.entry[i].gsx$priority.$t
                 "Latitude": parseFloat(data.feed.entry[i].gsx$latitude.$t),
                 "Longitude": parseFloat(data.feed.entry[i].gsx$longitude.$t)
             };
             jsonDataObject.push(json_data);
-                
+            
             for (var j = 0; j < jsonDataObject.length; j++) {
-                var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)));
+                for(var k in jsonDataObject){
+                    if(jsonDataObject[k].Priority == 'HP'){
+                      var color =  '#FF0000';
+                      }
+                    else if(jsonDataObject[k].Priority == 'MP'){
+                      var color =  '#FFFF00';
+                      }
+                    else if(jsonDataObject[k].Priority == 'LP'){
+                      var color =  '#00FF00';
+                      }
+                    
+                  } 
+                var leafIcon = helper.getIcon(
+                        {icon: 'leaf',
+                        markerColor: color});
+                
+                var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: leafIcon});
                 marker.bindPopup(jsonDataObject[j].City, {
                         autoClose: false
                 });
@@ -166,7 +183,7 @@
                 marker.on('click', onClick_Marker)
                 // Attach the corresponding JSON data to your marker:
                 marker.myJsonData =jsonDataObject[j];
-        
+                
                 function onClick_Marker(e) {
                         var marker = e.target;
                         popup = L.popup()
