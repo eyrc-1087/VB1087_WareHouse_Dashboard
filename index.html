@@ -161,18 +161,18 @@
             for (var j = 0; j < jsonDataObject.length; j++) {
                 
                     if(jsonDataObject[j].Priority == 'HP'){
-                      var color =  'red';
+                      var color =  'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png';
                       }
                     else if(jsonDataObject[j].Priority == 'MP'){
-                      var color =  'yellow';
+                      var color =  'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png';
                       }
                     else if(jsonDataObject[j].Priority == 'LP'){
-                      var color =  'green';
+                      var color =  'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png' ;
                       }
-                      var leafIcon = L.icon({icon: 'leaf', markerColor: 'red'}); 
+                      var leafIcon = L.icon({iconUrl: color}); 
                       // var marker=L.marker(["43.527414", "-96.741249"], {icon: leafIcon}).addTo(map).bindPopup('The Location'); 
                       
-                var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)));
+                var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon:leafIcon});
                 marker.bindPopup(jsonDataObject[j].City, {
                         autoClose: false
                 });
