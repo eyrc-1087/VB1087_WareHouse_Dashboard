@@ -160,13 +160,13 @@
             
             for (var j = 0; j < jsonDataObject.length; j++) {
                 
-                    if(jsonDataObject[j].Priority == 'HP'){
+                    if(jsonDataObject[j].OrderDispatched != 'YES' & jsonDataObject[j].OrderShipped != 'YES'){
                       var color =  'img/marker-icon-red.png';
                       }
-                    else if(jsonDataObject[j].Priority == 'MP'){
+                    else if(jsonDataObject[j].OrderDispatched == 'YES' & jsonDataObject[j].OrderShipped != 'YES'){
                       var color =  'img/marker-icon-yellow.png';
                       }
-                    else if(jsonDataObject[j].Priority == 'LP'){
+                    else if(jsonDataObject[j].OrderDispatched == 'YES' & jsonDataObject[j].OrderShipped == 'YES'){
                       var color = 'img/marker-icon-green.png' ;
                       }
                       var leafIcon = L.icon({iconUrl: color,
