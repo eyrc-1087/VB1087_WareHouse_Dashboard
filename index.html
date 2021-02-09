@@ -47,11 +47,11 @@
         </div>
     </center>
 </header>
-<body >
+<body style="background-color:#EAE7DC;" >
     <center><h2>VB#1087 Dashboard Module</h2></center>
     <div id="map" style="height: 380px"></div> 
     <div id="column_chart" style="width: 100%; height: 400px;"></div>   
-    <hr style="height:4px;border-width:0;color:gray;background-color:gray">
+    <hr style="height:4px;border-width:0;color:gray;background-color:#F2F2F2">
    	
    		<center><table id="table1" border='1'>
             <tr>
@@ -242,6 +242,8 @@
         hAxis: { title: 'Order ID'},
         vAxis: { title: 'Time Taken (s)'},
         legend: { position: "none" },
+        backgroundColor: '#EAE7DC',
+        is3D: true
       };
       var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
       chart.draw(data, options);
